@@ -2,7 +2,7 @@ additionalRepositories:
   - url: https://github.com/CP4DModelOps/mlops-churn-api
     checkoutLocation: mlops-churn-api
 
-workspaceLocation: ascent-ui/main.code-workspace
+workspaceLocation: mlops-churn-ui/main.code-workspace
 
 tasks:
   - name: mlops-churn-api
