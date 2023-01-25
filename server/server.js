@@ -1,9 +1,22 @@
 const express = require('express');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../build')));
+
+// API proxy
+app.use(
+  '/api',
+  createProxyMiddleware({
+    target: process.env.API_HOST ?? 'http://example.com',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api': '/'
+    },
+  })
+);
 
 app.get('/health', function (req, res) {
   res.json({ status: 'UP' });

@@ -1,18 +1,16 @@
 import React from "react";
 import {
     HeaderContainer, Header, SkipToContent, HeaderMenuButton, HeaderName,
-    HeaderNavigation, HeaderMenu, HeaderMenuItem, HeaderGlobalBar,
+    HeaderNavigation, HeaderGlobalBar,
     HeaderGlobalAction, SideNav, SideNavItems, Content,
     SideNavMenu, SideNavMenuItem, Theme
 } from '@carbon/react';
 import {
-    Notification,
-    Search,
-    Switcher,
-    Fade,
+    Notification, Search, Fade, User
 } from '@carbon/react/icons';
 import { Route, Routes, BrowserRouter, Link } from 'react-router-dom';
 
+import { Customers } from '../Customers/Customers';
 import ErrorBoundary from "../../components/ErrorBoundary";
 import LandingPage from '../LandingPage';
 import NotFound from '../../components/NotFound';
@@ -41,18 +39,10 @@ class UIShell extends React.Component {
                                         onClick={onClickSideNavExpand}
                                         isActive={isSideNavExpanded}
                                     />
-                                    <HeaderName href="#" prefix="Carbon">
-                                        Template
+                                    <HeaderName href="#" prefix="Example">
+                                        Telco
                                     </HeaderName>
-                                    <HeaderNavigation aria-label="Carbon React App">
-                                        <HeaderMenuItem href="#">Contributing</HeaderMenuItem>
-                                        <HeaderMenuItem href="#">Contact</HeaderMenuItem>
-                                        <HeaderMenu aria-label="How To" menuLinkName="How To">
-                                            <HeaderMenuItem href="#one">Sub-link 1</HeaderMenuItem>
-                                            <HeaderMenuItem href="#two">Sub-link 2</HeaderMenuItem>
-                                            <HeaderMenuItem href="#three">Sub-link 3</HeaderMenuItem>
-                                        </HeaderMenu>
-                                    </HeaderNavigation>
+                                    <HeaderNavigation aria-label="Carbon React App"></HeaderNavigation>
                                     <HeaderGlobalBar>
                                         <HeaderGlobalAction
                                             aria-label="Search"
@@ -65,9 +55,9 @@ class UIShell extends React.Component {
                                             <Notification size={20} />
                                         </HeaderGlobalAction>
                                         <HeaderGlobalAction
-                                            aria-label="App Switcher"
+                                            aria-label="Profile"
                                             tooltipAlignment="end">
-                                            <Switcher size={20} />
+                                            <User size={20} />
                                         </HeaderGlobalAction>
                                     </HeaderGlobalBar>
                                     <ErrorBoundary>
@@ -78,14 +68,14 @@ class UIShell extends React.Component {
                                                     onClick={() => { this.setState({ activeItem: '/' }) }}>
                                                     Overview
                                                 </SideNavMenuItem>
-                                                <SideNavMenu renderIcon={Fade} title="Inventory" defaultExpanded>
-                                                    <SideNavMenuItem element={Link} to='/inventory/items'
-                                                        isActive={this.state.activeItem === '/inventory/items'}
-                                                        onClick={() => { this.setState({ activeItem: '/inventory/items' }) }}>
-                                                        Items
+                                                <SideNavMenu renderIcon={Fade} title="Customers" defaultExpanded>
+                                                    <SideNavMenuItem element={Link} to='/customers'
+                                                        isActive={this.state.activeItem === '/customers'}
+                                                        onClick={() => { this.setState({ activeItem: '/customers' }) }}>
+                                                        All Customers
                                                     </SideNavMenuItem>
                                                 </SideNavMenu>
-                                                <SideNavMenu renderIcon={Fade} title="Management">
+                                                <SideNavMenu renderIcon={Fade} title="Dashboards">
                                                     <SideNavMenuItem href="#">
                                                         Link
                                                     </SideNavMenuItem>
@@ -117,6 +107,7 @@ class UIShell extends React.Component {
                 <Content className='content'>
                     <Routes>
                         <Route path="/" element={<LandingPage />} />
+                        <Route path="/customers" element={<Customers />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Content>
