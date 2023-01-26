@@ -10,10 +10,10 @@ import {
 } from '@carbon/react/icons';
 import { Route, Routes, BrowserRouter, Link } from 'react-router-dom';
 
-import { Customers } from '../Customers/Customers';
 import ErrorBoundary from "../../components/ErrorBoundary";
 import LandingPage from '../LandingPage';
 import NotFound from '../../components/NotFound';
+import { SearchCustomer } from "../Customers/SearchCustomer";
 
 
 class UIShell extends React.Component {
@@ -39,8 +39,8 @@ class UIShell extends React.Component {
                                         onClick={onClickSideNavExpand}
                                         isActive={isSideNavExpanded}
                                     />
-                                    <HeaderName href="#" prefix="Example">
-                                        Telco
+                                    <HeaderName href="#" prefix="Telco">
+                                        Customer Insights
                                     </HeaderName>
                                     <HeaderNavigation aria-label="Carbon React App"></HeaderNavigation>
                                     <HeaderGlobalBar>
@@ -69,10 +69,10 @@ class UIShell extends React.Component {
                                                     Overview
                                                 </SideNavMenuItem>
                                                 <SideNavMenu renderIcon={Fade} title="Customers" defaultExpanded>
-                                                    <SideNavMenuItem element={Link} to='/customers'
-                                                        isActive={this.state.activeItem === '/customers'}
-                                                        onClick={() => { this.setState({ activeItem: '/customers' }) }}>
-                                                        All Customers
+                                                    <SideNavMenuItem element={Link} to='/customers/search'
+                                                        isActive={this.state.activeItem === '/customers/search'}
+                                                        onClick={() => { this.setState({ activeItem: '/customers/search' }) }}>
+                                                        Customer Insights
                                                     </SideNavMenuItem>
                                                 </SideNavMenu>
                                                 <SideNavMenu renderIcon={Fade} title="Dashboards">
@@ -107,7 +107,7 @@ class UIShell extends React.Component {
                 <Content className='content'>
                     <Routes>
                         <Route path="/" element={<LandingPage />} />
-                        <Route path="/customers" element={<Customers />} />
+                        <Route path="/customers/search" element={<ErrorBoundary><SearchCustomer /></ErrorBoundary>} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Content>

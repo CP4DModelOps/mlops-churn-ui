@@ -26,7 +26,7 @@ class LandingPage extends Component {
             </BreadcrumbItem>
           </Breadcrumb>
           <h1 className="landing-page__heading">
-            Design &amp; build with Carbon
+            Welcome to Customer Insights!
           </h1>
         </Column>
         <Column lg={16} md={8} sm={4} className="landing-page__r2">
@@ -44,13 +44,9 @@ class LandingPage extends Component {
                     lg={7}
                     sm={4}
                     className="landing-page__tab-content">
-                    <h2 className="landing-page__subheading">What is Carbon?</h2>
+                    <h2 className="landing-page__subheading">What is Customer Insights?</h2>
                     <p className="landing-page__p">
-                      Carbon is IBM’s open-source design system for digital
-                      products and experiences. With the IBM Design Language as
-                      its foundation, the system consists of working code, design
-                      tools and resources, human interface guidelines, and a
-                      vibrant community of contributors.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel tellus dolor. Proin ut tempus risus. Morbi velit elit, convallis quis orci eget, sollicitudin fermentum metus. Pellentesque imperdiet odio ac justo varius scelerisque. Donec suscipit risus at leo luctus dapibus. In vel egestas ante, vitae dictum nibh. Nulla tempus dui et nibh porta dapibus non nec eros.
                     </p>
                     <Button>Learn more</Button>
                   </Column>
@@ -70,8 +66,7 @@ class LandingPage extends Component {
                     md={8}
                     sm={4}
                     className="landing-page__tab-content">
-                    Rapidly build beautiful and accessible experiences. The Carbon
-                    kit contains all resources you need to get started.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel tellus dolor. Proin ut tempus risus. Morbi velit elit, convallis quis orci eget, sollicitudin fermentum metus. Pellentesque imperdiet odio ac justo varius scelerisque.
                   </Column>
                 </Grid>
               </TabPanel>
@@ -82,8 +77,7 @@ class LandingPage extends Component {
                     md={8}
                     sm={4}
                     className="landing-page__tab-content">
-                    Carbon provides styles and components in Vanilla, React,
-                    Angular, and Vue for anyone building on the web.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel tellus dolor. Proin ut tempus risus. Morbi velit elit, convallis quis orci eget, sollicitudin fermentum metus. Pellentesque imperdiet odio ac justo varius scelerisque.
                   </Column>
                 </Grid>
               </TabPanel>
@@ -93,18 +87,18 @@ class LandingPage extends Component {
         <Column lg={16} md={8} sm={4} className="landing-page__r3">
           <InfoSection heading="The Principles">
             <InfoCard
-              heading="Carbon is Open"
-              body="It's a distributed effort, guided by the principles of the open-source movement. Carbon's users are also it's makers, and everyone is encouraged to contribute."
+              heading="Open"
+              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel tellus dolor. Proin ut tempus risus. Morbi velit elit, convallis quis orci eget, sollicitudin fermentum metus. Pellentesque imperdiet odio ac justo varius scelerisque."
               icon={() => <PersonFavorite size={32} />}
             />
             <InfoCard
-              heading="Carbon is Modular"
-              body="Carbon's modularity ensures maximum flexibility in execution. It's components are designed to work seamlessly with each other, in whichever combination suits the needs of the user."
+              heading="Modular"
+              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel tellus dolor. Proin ut tempus risus. Morbi velit elit, convallis quis orci eget, sollicitudin fermentum metus. Pellentesque imperdiet odio ac justo varius scelerisque."
               icon={() => <Application size={32} />}
             />
             <InfoCard
-              heading="Carbon is Consistent"
-              body="Based on the comprehensive IBM Design Language, every element and component of Carbon was designed from the ground up to work elegantly together to ensure consistent, cohesive user experiences."
+              heading="Consistent"
+              body="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel tellus dolor. Proin ut tempus risus. Morbi velit elit, convallis quis orci eget, sollicitudin fermentum metus. Pellentesque imperdiet odio ac justo varius scelerisque."
               icon={() => <Globe size={32} />}
             />
           </InfoSection>

@@ -16,6 +16,6 @@ test('renders text', () => {
     }))
   });
   render(<App />);
-  const linkElement = screen.getByText(/Design & build with Carbon/i);
+  const linkElement = screen.getByText(/Welcome to Customer Insights!/i);
   expect(linkElement).toBeInTheDocument();
 });
