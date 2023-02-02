@@ -26,27 +26,29 @@ This app contains an opinionated set of components for modern web development, i
 On your workstation, open a terminal:
 
 ```sh
-$ git clone https://github.com/cloud-native-toolkit/automation-solutions
-$ cd automation-solutions
-$ curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
-$ cd output/
-$ ./launch.sh
-/terraform $ export TF_VAR_server_url="<CLUSTER_SERVER_URL>"
-/terraform $ export TF_VAR_cluster_login_token="<CLUSTER_LOGIN_TOKEN>"
-/terraform $ export TF_VAR_config_banner_text="<CLUSTER_BANNER_TEXT>"
-/terraform $ export TF_VAR_gitops_repo_host="github.com"
-/terraform $ export TF_VAR_gitops_repo_org="<GITOPS_REPO_ORG>" # Skip if using personal repo
-/terraform $ export TF_VAR_gitops_repo_repo="<GITOPS_REPO_NAME>"
-/terraform $ export TF_VAR_gitops_repo_username="<GIT_USERNAME>"
-/terraform $ export TF_VAR_gitops_repo_token="<GIT_TOKEN>"
-/terraform $ cp -r . /workspaces/current
-/terraform $ cd /workspaces/current
-/workspaces/current $ cd 200-openshift-gitops/terraform/
-$ terraform init
-$ terraform apply
-$ cd ../../220-dev-tools/terraform
-$ terraform init
-$ terraform apply
+git clone https://github.com/cloud-native-toolkit/automation-solutions
+cd automation-solutions
+curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
+iascable build -i boms/infrastructure/_common/200-openshift-gitops.yaml
+iascable build -i boms/infrastructure/_common/220-dev-tools.yaml
+cd output/
+./launch.sh
+export TF_VAR_server_url="<CLUSTER_SERVER_URL>"
+export TF_VAR_cluster_login_token="<CLUSTER_LOGIN_TOKEN>"
+export TF_VAR_config_banner_text="<CLUSTER_BANNER_TEXT>"
+export TF_VAR_gitops_repo_host="github.com"
+export TF_VAR_gitops_repo_org="<GITOPS_REPO_ORG>" # Skip if using personal repo
+export TF_VAR_gitops_repo_repo="<GITOPS_REPO_NAME>"
+export TF_VAR_gitops_repo_username="<GIT_USERNAME>"
+export TF_VAR_gitops_repo_token="<GIT_TOKEN>"
+cp -r . /workspaces/current
+cd /workspaces/current
+cd 200-openshift-gitops/terraform/
+terraform init
+terraform apply
+cd ../../220-dev-tools/terraform
+terraform init
+terraform apply
 ```
 
 #### Setup Artifactory
