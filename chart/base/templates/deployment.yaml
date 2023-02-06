@@ -54,6 +54,9 @@ spec:
             httpGet:
               path: /
               port: http
+          envFrom:
+            - secretRef:
+                name: mlops-churn-ui-config
           env:
             - name: INGRESS_HOST
               value: ""
