@@ -121,7 +121,7 @@ export function SearchCustomer() {
                                 {customer.id in predictions ?
                                     predictions[customer.id]
                                     :
-                                    <Button size='sm' renderIcon={IbmCloudPakData} onClick={() => {getPredictions(customer)}}>Predict</Button>
+                                    <Button size='sm' renderIcon={IbmCloudPakData} onClick={() => { getPredictions(customer) }}>Predict</Button>
                                 }
                             </StructuredListCell>
                         </StructuredListRow>
