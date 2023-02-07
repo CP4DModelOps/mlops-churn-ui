@@ -41,3 +41,6 @@ vcsInfo:
   branch: ""
 
 runtime: js
+
+partOf: customer-churn
+connectsTo: mlops-churn-api
