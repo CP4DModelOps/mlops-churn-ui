@@ -8,7 +8,7 @@ tasks:
   - name: mlops-churn-api
     before: cd ../mlops-churn-api
     init: |
-      docker run --name pg-server -p 5432:5432 -v $(pwd)/data:/docker-entrypoint-initdb.d -e POSTGRES_PASSWORD=${PGPASSWORD} -d postgres
+      docker run --name pg-server -p 5432:5432 -v $(pwd)/data:/docker-entrypoint-initdb.d -e POSTGRES_DB=telco -e POSTGRES_PASSWORD=postgres -d postgres
       npm install
       npm run build
     command: npm run start
