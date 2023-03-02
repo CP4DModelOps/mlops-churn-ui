@@ -5,18 +5,10 @@ additionalRepositories:
 workspaceLocation: mlops-churn-ui/main.code-workspace
 
 tasks:
-  - name: postgresql
-    before: cd /home/gitpod/.local/bin
-    init: |
-      wget https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/oc/latest/linux/oc.tar.gz
-      tar -xvf oc.tar.gz
-      rm README.md oc.tar.gz
-      oc login --token=$OCP_TOKEN --server=$OCP_SERVER
-      oc project $OCP_PROJECT
-    command: oc port-forward pg-postgresql-0 5432:5432
   - name: mlops-churn-api
     before: cd ../mlops-churn-api
     init: |
+      docker run --name pg-server -p 5432:5432 -v $(pwd)/data:/docker-entrypoint-initdb.d -e POSTGRES_PASSWORD=${PGPASSWORD} -d postgres
       npm install
       npm run build
     command: npm run start
