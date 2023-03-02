@@ -3,3 +3,14 @@
         margin-left: 16rem;
     }
 }
+
+.notif {
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+    z-index: 10000;
+}
+
+.notif .cds--toast-notification {
+    margin-bottom: 1rem;
+}

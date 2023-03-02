@@ -3,7 +3,7 @@ import {
     HeaderContainer, Header, SkipToContent, HeaderMenuButton, HeaderName,
     HeaderNavigation, HeaderGlobalBar,
     HeaderGlobalAction, SideNav, SideNavItems, Content,
-    SideNavMenu, SideNavMenuItem, Theme
+    SideNavMenu, SideNavMenuItem, Theme, ToastNotification
 } from '@carbon/react';
 import {
     Notification, Search, Fade, User
@@ -21,8 +21,37 @@ class UIShell extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        activeItem: `/${window.location.pathname.split('/')[1] ?? ''}`
+        activeItem: `/${window.location.pathname.split('/')[1] ?? ''}`,
+        notifications: []
       };
+      this.addNotification = this.addNotification.bind(this);
+    }
+
+    addNotification(type, message, detail) {
+      this.setState(prevState => ({
+        notifications: [
+          ...prevState.notifications,
+          {
+            message: message || "Notification",
+            detail: detail || "Notification text",
+            severity: type || "info"
+          }
+        ]
+      }));
+    }
+
+    renderNotifications() {
+      return this.state.notifications.map(notification => {
+        return (
+          <ToastNotification
+            title={notification.message}
+            subtitle={notification.detail}
+            kind={notification.severity}
+            timeout={10000}
+            caption={false}
+          />
+        );
+      });
     }
 
     render() {
@@ -105,9 +134,14 @@ class UIShell extends React.Component {
                     />
                 </Theme>
                 <Content className='content'>
+
+                    <div className='notif'>
+                        {this.state.notifications.length !== 0 && this.renderNotifications()}
+                    </div>
+
                     <Routes>
                         <Route path="/" element={<LandingPage />} />
-                        <Route path="/customers/search" element={<ErrorBoundary><SearchCustomer /></ErrorBoundary>} />
+                        <Route path="/customers/search" element={<ErrorBoundary><SearchCustomer addNotification={this.addNotification} /></ErrorBoundary>} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Content>

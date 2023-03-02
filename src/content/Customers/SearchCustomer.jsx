@@ -2,13 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import {
     Loading, StructuredListWrapper, StructuredListHead, StructuredListBody,
-    StructuredListRow, StructuredListCell, Button, Search
+    StructuredListRow, StructuredListCell, Button, Search, DefinitionTooltip
 } from '@carbon/react';
 import {
-    IbmCloudPakData
+    IbmCloudPakData, Warning, CheckmarkOutline, TagExport
 } from '@carbon/react/icons';
 
-export function SearchCustomer() {
+export function SearchCustomer({ addNotification }) {
 
     const [loading, setLoading] = React.useState(false);
     const [customers, setCustomers] = React.useState(undefined);
@@ -72,8 +72,13 @@ export function SearchCustomer() {
             }
         })
             .then((response) => {
+                console.log(response.data);
+                const preds = {
+                    predictedLabel: response.data?.predictions[0]?.values[0][26],
+                    churnProbability: response.data?.predictions[0]?.values[0][24][1]
+                }
                 setLoading(false);
-                setPredictions({ ...predictions, [customer.id]: response.data?.predictions[0]?.values[0][0] });
+                setPredictions({ ...predictions, [customer.id]: preds });
             })
             .catch((error) => {
                 setLoading(false);
@@ -81,7 +86,7 @@ export function SearchCustomer() {
             });
     }
 
-    return <div>
+    return <div className='search-customer'>
         <h1>Search Customer</h1>
         <br />
         <div style={{ width: '500px' }}>
@@ -119,7 +124,16 @@ export function SearchCustomer() {
                             <StructuredListCell>{customer.email}</StructuredListCell>
                             <StructuredListCell>
                                 {customer.id in predictions ?
-                                    predictions[customer.id]
+                                    predictions[customer.id]?.churnProbability > .1 ?
+                                        <div style={{display: 'flex', alignItems: 'center'}}>
+                                            <DefinitionTooltip definition="This customer is likely to churn. Click on the generated link to notify customer about a discount on his next bill." openOnHover style={{ display: 'flex' }}>
+                                                Likely <Warning size={24} style={{ color: 'red' }} />
+                                            </DefinitionTooltip>
+                                            <Button size='sm' renderIcon={TagExport} onClick={() => {setTimeout(() => addNotification("success", "Success", `10% Discount notification has been seen to ${customer.email}!`), 100)}}>Discount</Button>
+                                        </div>
+
+                                        :
+                                        <div style={{ display: 'flex' }}>Not Likely <CheckmarkOutline size={20} style={{ color: 'blue' }} /></div>
                                     :
                                     <Button size='sm' renderIcon={IbmCloudPakData} onClick={() => { getPredictions(customer) }}>Predict</Button>
                                 }
